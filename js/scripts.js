@@ -4,6 +4,7 @@ function Pizza(size, toppings) {
   this.sizePrice;
   this.toppingsPrice = [];
   this.tax;
+  this.totalPrice;
 }
 
 function Order() {
@@ -38,6 +39,7 @@ Pizza.prototype.calculatePrice = function() {
   this.tax = price*0.08;
   console.log(this.tax);
   price += this.tax;
+  this.totalPrice = price;
   return price;
 }
 
@@ -130,6 +132,7 @@ $(function() {
   });
 
   $('form#pizza').submit(function(event) {
+    newOrder = new Order();
     $('.new-pizza').each(function() {
       var size = $(this).find('select#size').val();
       var toppings = [];
@@ -137,8 +140,8 @@ $(function() {
         toppings.push($(this).val());
       });
       var newPizza = new Pizza(size, toppings);
-      var totalPrice = newPizza.calculatePrice();
-      //create order object and push pizza into array
+      newPizza.calculatePrice();
+      newOrder.pizzas.push(newPizza);
     })
     // var size = $('select#size').val();
     // var toppings = [];
@@ -147,24 +150,22 @@ $(function() {
     // });
     // var newPizza = new Pizza(size, toppings);
     // var totalPrice = newPizza.calculatePrice();
-
+    debugger;
     $('#toppingsPrice').empty();
     $('.orderToppings').empty();
-    $('.orderSize').text(size);
-    console.log(toppings);
-    debugger;
-    for(var i = 0; i < toppings.length; i++) {
-      if(i === toppings.length-1) {
-        $('.orderToppings').append(toppings[i]);
-        $('#toppingsPrice').append('<p>'+toppings[i]+': $'+parseFloat(Math.round(newPizza.toppingsPrice[i]*100)/100).toFixed(2)+'</p>');
+    $('.orderSize').text(newOrder.pizzas[0].size);
+    for(var i = 0; i < newOrder.pizzas[0].toppings.length; i++) {
+      if(i === newOrder.pizzas[0].toppings.length-1) {
+        $('.orderToppings').append(newOrder.pizzas[0].toppings[i]);
+        $('#toppingsPrice').append('<p>'+newOrder.pizzas[0].toppings[i]+': $'+parseFloat(Math.round(newOrder.pizzas[0].toppingsPrice[i]*100)/100).toFixed(2)+'</p>');
       } else {
-        $('.orderToppings').append(toppings[i] + ', ');
-        $('#toppingsPrice').append('<p>'+toppings[i]+': $'+parseFloat(Math.round(newPizza.toppingsPrice[i]*100)/100).toFixed(2)+'</p>');
+        $('.orderToppings').append(newOrder.pizzas[0].toppings[i] + ', ');
+        $('#toppingsPrice').append('<p>'+newOrder.pizzas[0].toppings[i]+': $'+parseFloat(Math.round(newOrder.pizzas[0].toppingsPrice[i]*100)/100).toFixed(2)+'</p>');
       }
     }
-    $('.sizePrice').text(parseFloat(Math.round(newPizza.sizePrice*100)/100).toFixed(2));
-    $('.tax').text(parseFloat(Math.round(newPizza.tax*100)/100).toFixed(2));
-    $('.totalPrice').text(parseFloat(Math.round(totalPrice*100)/100).toFixed(2));
+    $('.sizePrice').text(parseFloat(Math.round(newOrder.pizzas[0].sizePrice*100)/100).toFixed(2));
+    $('.tax').text(parseFloat(Math.round(newOrder.pizzas[0].tax*100)/100).toFixed(2));
+    $('.totalPrice').text(parseFloat(Math.round(newOrder.pizzas[0].totalPrice*100)/100).toFixed(2));
     $('#orderConfirm').show();
 
     event.preventDefault();
