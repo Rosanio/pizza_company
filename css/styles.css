@@ -13,6 +13,10 @@
   font-size: 40px;
 }
 
+#quantity {
+  margin-bottom: 20px;
+}
+
 .header {
   background-color: #008000;
   color: white;
