@@ -17,6 +17,10 @@
   margin-bottom: 50px;
 }
 
+#currentTotal {
+  float: right;
+}
+
 .header {
   background-color: #008000;
   color: white;

@@ -125,8 +125,41 @@ function createNewPizza() {
 }
 
 $(function() {
+  var firstPizza = new Pizza('Small', []);
+  firstPizza.calculatePrice();
   $('#addPizza').click(function() {
     createNewPizza();
+  });
+  var currentSizePrice = 8;
+  var currentToppingPrice = 0;
+  var currentPriceDisplay = parseFloat(Math.round((currentSizePrice+currentToppingPrice)*100)/100).toFixed(2);
+  $('.currentTotal').text(currentPriceDisplay);
+  $('.sizeTarget').change(function() {
+    var size = $('.sizeTarget option:selected').val();
+    if(size === "Small") {
+      currentSizePrice = 8;
+      firstPizza.sizePrice = currentSizePrice;
+      var currentPriceDisplay = parseFloat(Math.round((currentSizePrice+currentToppingPrice)*100)/100).toFixed(2);
+      $('.currentTotal').text(currentPriceDisplay);
+    }
+    if(size === "Medium") {
+      currentSizePrice = 10;
+      firstPizza.sizePrice = currentSizePrice;
+      var currentPriceDisplay = parseFloat(Math.round((currentSizePrice+currentToppingPrice)*100)/100).toFixed(2);
+      $('.currentTotal').text(currentPriceDisplay);
+    }
+    if(size === "Large") {
+      currentSizePrice = 12;
+      firstPizza.sizePrice = currentSizePrice;
+      var currentPriceDisplay = parseFloat(Math.round((currentSizePrice+currentToppingPrice)*100)/100).toFixed(2);
+      $('.currentTotal').text(currentPriceDisplay);
+    }
+    if(size === "Xtra-Large") {
+      currentSizePrice = 14;
+      firstPizza.sizePrice = currentSizePrice;
+      var currentPriceDisplay = parseFloat(Math.round((currentSizePrice+currentToppingPrice)*100)/100).toFixed(2);
+      $('.currentTotal').text(currentPriceDisplay);
+    }
   });
 
   $('form#pizza').submit(function(event) {
@@ -174,6 +207,7 @@ $(function() {
       for(var j = 0; j < newOrder.pizzas.length; j++) {
         $('#multiplePizzas').append('<p><span class="linkSpan">Pizza ' + (j+1) + '</span>: $' + parseFloat(Math.round(newOrder.pizzas[j].totalPrice*100)/100).toFixed(2));
         orderTotal += newOrder.pizzas[j].totalPrice;
+        $('#multiplePizzas').append('<div class="pizzaInfo"></div>')
       }
       $('#multiplePizzas').append('<p>Total: $' + parseFloat(Math.round(orderTotal*100)/100).toFixed(2));
       $('#orderConfirm').show();
@@ -181,6 +215,8 @@ $(function() {
 
     event.preventDefault();
 
-
+    // $('.linkSpan').last().click(function() {
+    //   $('.pizzaInfo').append('<p>')
+    // });
   });
 });
