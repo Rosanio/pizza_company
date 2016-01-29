@@ -13,6 +13,10 @@
   font-size: 40px;
 }
 
+#pizza {
+  margin-bottom: 50px;
+}
+
 .header {
   background-color: #008000;
   color: white;
@@ -38,4 +42,13 @@
 
 .indent {
   padding-left: 15px;
+}
+
+.linkSpan {
+  color: blue;
+  cursor: pointer;
+}
+
+.linkSpan:hover {
+  text-decoration: underline;
 }

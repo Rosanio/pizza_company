@@ -150,8 +150,8 @@ $(function() {
     // var totalPrice = newPizza.calculatePrice();
     $('#toppingsPrice').empty();
     $('.orderToppings').empty();
-    debugger;
     if(newOrder.pizzas.length === 1) {
+      $('#multiplePizzas').empty();
       $('.orderSize').text(newOrder.pizzas[0].size);
       for(var i = 0; i < newOrder.pizzas[0].toppings.length; i++) {
         if(i === newOrder.pizzas[0].toppings.length-1) {
@@ -169,12 +169,13 @@ $(function() {
       $('#onePizza').show();
     } else {
       $('#onePizza').hide();
+      $('#multiplePizzas').empty();
       var orderTotal = 0;
       for(var j = 0; j < newOrder.pizzas.length; j++) {
-        $('#orderConfirm').append('<p><span class="linkSpan">Pizza 1</span>: $' + parseFloat(Math.round(newOrder.pizzas[j].totalPrice*100)/100).toFixed(2));
+        $('#multiplePizzas').append('<p><span class="linkSpan">Pizza ' + (j+1) + '</span>: $' + parseFloat(Math.round(newOrder.pizzas[j].totalPrice*100)/100).toFixed(2));
         orderTotal += newOrder.pizzas[j].totalPrice;
       }
-      $('#orderConfirm').append('<p>Total: $' + parseFloat(Math.round(orderTotal*100)/100).toFixed(2));
+      $('#multiplePizzas').append('<p>Total: $' + parseFloat(Math.round(orderTotal*100)/100).toFixed(2));
       $('#orderConfirm').show();
     }
 
