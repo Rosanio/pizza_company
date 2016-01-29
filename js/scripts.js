@@ -7,7 +7,7 @@ function Pizza(size, toppings) {
 }
 
 Pizza.prototype.calculatePrice = function() {
-  var sizes = ['small','medium','large','xtra-large'];
+  var sizes = ['Small','Medium','Large','Xtra-Large'];
   var meats = ['pepperoni','bacon','sausage','chicken','beef','anchovies'];
   var otherToppings = ['peppers','onions','mushrooms','jalapenos','pineapple','tomatoes','olives'];
   var price = 8;
@@ -47,7 +47,20 @@ $(function() {
     var newPizza = new Pizza(size, toppings);
     var totalPrice = newPizza.calculatePrice();
 
-
+    $('.orderSize').text(size);
+    for(var i = 0; i < toppings.length; i++) {
+      if(i === toppings.length-1) {
+        $('.orderToppings').append(toppings[i]);
+        $('#toppingsPrice').append('<p>'+toppings[i]+': $'+newPizza.toppingsPrice[i].toString()+'</p>');
+      } else {
+        $('.orderToppings').append(toppings[i] + ', ');
+        $('#toppingsPrice').append('<p>'+toppings[i]+': $'+newPizza.toppingsPrice[i].toString()+'</p>');
+      }
+    }
+    $('.sizePrice').text(newPizza.sizePrice.toString());
+    $('.tax').text(newPizza.tax.toString());
+    $('.totalPrice').text(totalPrice.toString());
+    $('#orderConfirm').show();
 
     event.preventDefault();
   });
