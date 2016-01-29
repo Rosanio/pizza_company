@@ -18,3 +18,9 @@
 .header img{
   float: left;
 }
+
+.motto {
+  color: #ff1a1a;
+  border-bottom: 2px solid #ff1a1a;
+  margin-bottom: 30px;
+}
