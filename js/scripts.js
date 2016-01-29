@@ -14,7 +14,7 @@ Pizza.prototype.calculatePrice = function() {
   for(var i = 0; i < sizes.length; i++) {
     if(this.size === sizes[i]) {
       this.sizePrice = price + (2*i);
-      price += this.sizePrice;
+      price += (2*i);
     }
   }
   for(var j = 0; j < this.toppings.length; j++) {
@@ -32,7 +32,7 @@ Pizza.prototype.calculatePrice = function() {
     }
   }
   this.tax = price*0.08;
-  Math.round((100*tax)/100);
+  Math.round((100*this.tax)/100);
   price += this.tax;
   return price;
 }
@@ -45,7 +45,7 @@ $(function() {
       toppings.push($(this).val());
     });
     var newPizza = new Pizza(size, toppings);
-    var price = newPizza.calculatePrice();
+    var totalPrice = newPizza.calculatePrice();
 
 
 
