@@ -10,6 +10,7 @@
 #orderConfirm h2 {
   text-align: center;
   font-family: serif;
+  font-size: 40px;
 }
 
 .header {
@@ -33,4 +34,8 @@
   color: #ff1a1a;
   border-bottom: 2px solid #ff1a1a;
   margin-bottom: 30px;
+}
+
+.indent {
+  padding-left: 15px;
 }
