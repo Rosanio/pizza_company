@@ -37,6 +37,87 @@ Pizza.prototype.calculatePrice = function() {
   return price;
 }
 
+function createNewPizza() {
+  $('#new-pizza').append('<div class="new-pizza">' +
+                            '<div class="form-group">' +
+                              '<label for="size">Select a Size</label>' +
+                              '<select id="size">' +
+                                '<option value="Small">Small</option>' +
+                                '<option value="Medium">Medium</option>' +
+                                '<option value="Large">Large</option>' +
+                                '<option value="Xtra-Large">Xtra-Lagre</option>' +
+                              '</select>' +
+                            '</div>' +
+                            '<div class="form-group">' +
+                              '<label>Select your Toppings</label>' +
+                              '<div class="checkbox">' +
+                                '<label>' +
+                                  "<input type='checkbox' value='Pepperoni' name='topping'>Pepperoni" +                                '</label>' +
+                              '</div>' +
+                              '<div class="checkbox">' +
+                                '<label>' +
+                                  "<input type='checkbox' value='Bacon' name='topping'>Bacon" +
+                                '</label>' +
+                              '</div>' +
+                              '<div class="checkbox">' +
+                                '<label>' +
+                                  "<input type='checkbox' value='Sausage' name='topping'>Sausage" +
+                                '</label>' +
+                              '</div>' +
+                              '<div class="checkbox">' +
+                                '<label>' +
+                                  "<input type='checkbox' value='Chicken' name='topping'>Chicken" +
+                                '</label>' +
+                              '</div>' +
+                              '<div class="checkbox">' +
+                                '<label>' +
+                                  "<input type='checkbox' value='Beef' name='topping'>Beef" +
+                                '</label>' +
+                              '</div>' +
+                              '<div class="checkbox">' +
+                                '<label>' +
+                                  "<input type='checkbox' value='Anchovies' name='topping'>Anchovies" +
+                                '</label>' +
+                              '</div>' +
+                              '<div class="checkbox">' +
+                                '<label>' +
+                                  "<input type='checkbox' value='Peppers' name='topping'>Peppers" +
+                                '</label>' +
+                              '</div>' +
+                              '<div class="checkbox">' +
+                                '<label>' +
+                                  "<input type='checkbox' value='Onions' name='topping'>Onions" +
+                                '</label>' +
+                              '</div>' +
+                              '<div class="checkbox">' +
+                                '<label>' +
+                                  "<input type='checkbox' value='Mushrooms' name='topping'>Mushrooms" +
+                                '</label>' +
+                              '</div>' +
+                              '<div class="checkbox">' +
+                                '<label>' +
+                                  "<input type='checkbox' value='Jalapenos' name='topping'>Jalapenos" +
+                                '</label>' +
+                              '</div>' +
+                              '<div class="checkbox">' +
+                                '<label>' +
+                                  "<input type='checkbox' value='Pineapple' name='topping'>Pineapple" +
+                                '</label>' +
+                              '</div>' +
+                              '<div class="checkbox">' +
+                                '<label>' +
+                                  "<input type='checkbox' value='Tomatoes' name='topping'>Tomatoes" +
+                                '</label>' +
+                              '</div>' +
+                              '<div class="checkbox">' +
+                                '<label>' +
+                                  "<input type='checkbox' value='Olives' name='topping'>Olives" +
+                                '</label>' +
+                              '</div>' +
+                            '</div>' +
+                          '</div>)'
+}
+
 $(function() {
   $('form#pizza').submit(function(event) {
     var size = $('select#size').val();
