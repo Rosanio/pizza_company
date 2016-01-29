@@ -47,6 +47,8 @@ $(function() {
     var newPizza = new Pizza(size, toppings);
     var totalPrice = newPizza.calculatePrice();
 
+    $('#toppingsPrice').empty();
+    $('.orderToppings').empty();
     $('.orderSize').text(size);
     for(var i = 0; i < toppings.length; i++) {
       if(i === toppings.length-1) {
