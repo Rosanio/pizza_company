@@ -6,7 +6,7 @@ function Pizza(size, toppings) {
 Pizza.prototype.calculatePrice = function() {
   var sizes = ['small','medium','large','xtra-large'];
   var meats = ['pepperoni','bacon','sausage','chicken','beef','anchovies'];
-  var otherToppings = ['peppers','onions','mushrooms','jalapenos','pineapple','tomatos','olives'];
+  var otherToppings = ['peppers','onions','mushrooms','jalapenos','pineapple','tomatoes','olives'];
   var price = 8;
   for(var i = 0; i < sizes.length; i++) {
     if(this.size === sizes[i]) {
@@ -27,6 +27,5 @@ Pizza.prototype.calculatePrice = function() {
   }
   price += (price*0.08);
   Math.round((100*price)/100);
-  console.log(price);
   return price;
 }

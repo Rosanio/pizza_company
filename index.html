@@ -1,14 +1,95 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title></title>
+    <title>Papa Hans' Pizza</title>
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="css/styles.css" rel="stylesheet" type="text/css">
     <script src="js/jquery-1.12.0.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src ="js/scripts.js"></script>
-</head>
-<body>
-
-</body>
+  </head>
+  <body class='container'>
+    <h1>Welcome to Papa Hans' Signature Pizza</h1>
+    <h3>Superior Ingredients, Superior Pizza, Papa Hans'</h3>
+    <form id="pizza">
+      <div class="form-group">
+        <label for="size">Select a Size</label>
+        <select id="size">
+          <option value="small">Small</option>
+          <option value="medium">Medium</option>
+          <option value="large">Large</option>
+          <option value="xtra-large">Xtra-Lagre</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Select your Toppings</label>
+        <div class="checkbox">
+          <label>
+            <input type='checkbox' value='pepperoni' name='topping'>Pepperoni
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type='checkbox' value='bacon' name='topping'>Bacon
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type='checkbox' value='sausage' name='topping'>Sausage
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type='checkbox' value='chicken' name='topping'>Chicken
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type='checkbox' value='beef' name='topping'>Beef
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type='checkbox' value='anchovies' name='topping'>Anchovies
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type='checkbox' value='peppers' name='topping'>Peppers
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type='checkbox' value='onions' name='topping'>Onions
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type='checkbox' value='mushrooms' name='topping'>Mushrooms
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type='checkbox' value='jalapenos' name='topping'>Jalapenos
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type='checkbox' value='pineapple' name='topping'>Pineapple
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type='checkbox' value='tomatoes' name='topping'>Tomatoes
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type='checkbox' value='olives' name='topping'>Olives
+          </label>
+        </div>
+      </div>
+      <button type='submit' class='btn btn-primary'>Place your Order</button>
+    </form>
+  </body>
 </html>
