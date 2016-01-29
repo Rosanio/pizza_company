@@ -134,32 +134,37 @@ $(function() {
   var currentToppingPrice = 0;
   var currentPriceDisplay = parseFloat(Math.round((currentSizePrice+currentToppingPrice)*100)/100).toFixed(2);
   $('.currentTotal').text(currentPriceDisplay);
+
   $('.sizeTarget').change(function() {
     var size = $('.sizeTarget option:selected').val();
-    if(size === "Small") {
-      currentSizePrice = 8;
-      firstPizza.sizePrice = currentSizePrice;
-      var currentPriceDisplay = parseFloat(Math.round((currentSizePrice+currentToppingPrice)*100)/100).toFixed(2);
-      $('.currentTotal').text(currentPriceDisplay);
+    firstPizza.size = size;
+    firstPizza.calculatePrice();
+    currentSizePrice = firstPizza.sizePrice;
+    currentPriceDisplay = parseFloat(Math.round((currentSizePrice+currentToppingPrice)*100)/100).toFixed(2);
+    $('.currentTotal').text(currentPriceDisplay);
+  });
+
+  $('.toppingTarget').change(function() {
+    var currentToppingPrice = 0;
+    firstPizza.toppings = [];
+    firstPizza.toppingsPrice = [];
+    $('.meat').each(function() {
+      if($(this).is(":checked")) {
+        firstPizza.toppings.push($(this).val());
+      }
+    });
+    $('.other').each(function() {
+      if($(this).is(":checked")) {
+        firstPizza.toppings.push($(this).val());
+      }
+    });
+    firstPizza.calculatePrice();
+    for(var i = 0; i < firstPizza.toppingsPrice.length; i++) {
+      currentToppingPrice += firstPizza.toppingsPrice[i];
     }
-    if(size === "Medium") {
-      currentSizePrice = 10;
-      firstPizza.sizePrice = currentSizePrice;
-      var currentPriceDisplay = parseFloat(Math.round((currentSizePrice+currentToppingPrice)*100)/100).toFixed(2);
-      $('.currentTotal').text(currentPriceDisplay);
-    }
-    if(size === "Large") {
-      currentSizePrice = 12;
-      firstPizza.sizePrice = currentSizePrice;
-      var currentPriceDisplay = parseFloat(Math.round((currentSizePrice+currentToppingPrice)*100)/100).toFixed(2);
-      $('.currentTotal').text(currentPriceDisplay);
-    }
-    if(size === "Xtra-Large") {
-      currentSizePrice = 14;
-      firstPizza.sizePrice = currentSizePrice;
-      var currentPriceDisplay = parseFloat(Math.round((currentSizePrice+currentToppingPrice)*100)/100).toFixed(2);
-      $('.currentTotal').text(currentPriceDisplay);
-    }
+    console.log(currentToppingPrice);
+    currentPriceDisplay = parseFloat(Math.round((currentSizePrice+currentToppingPrice)*100)/100).toFixed(2);
+    $('.currentTotal').text(currentPriceDisplay);
   });
 
   $('form#pizza').submit(function(event) {
