@@ -1,5 +1,15 @@
 #orderConfirm {
   display: none;
+  background-color: #e6e6e6;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  padding-top: 5px;
+  margin-top: 20px;
+}
+
+#orderConfirm h2 {
+  text-align: center;
+  font-family: serif;
 }
 
 .header {

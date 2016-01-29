@@ -32,7 +32,7 @@ Pizza.prototype.calculatePrice = function() {
     }
   }
   this.tax = price*0.08;
-  Math.round((100*this.tax)/100);
+  console.log(this.tax);
   price += this.tax;
   return price;
 }
@@ -53,15 +53,15 @@ $(function() {
     for(var i = 0; i < toppings.length; i++) {
       if(i === toppings.length-1) {
         $('.orderToppings').append(toppings[i]);
-        $('#toppingsPrice').append('<p>'+toppings[i]+': $'+newPizza.toppingsPrice[i].toString()+'</p>');
+        $('#toppingsPrice').append('<p>'+toppings[i]+': $'+parseFloat(Math.round(newPizza.toppingsPrice[i]*100)/100).toFixed(2)+'</p>');
       } else {
         $('.orderToppings').append(toppings[i] + ', ');
-        $('#toppingsPrice').append('<p>'+toppings[i]+': $'+newPizza.toppingsPrice[i].toString()+'</p>');
+        $('#toppingsPrice').append('<p>'+toppings[i]+': $'+parseFloat(Math.round(newPizza.toppingsPrice[i]*100)/100).toFixed(2)+'</p>');
       }
     }
-    $('.sizePrice').text(newPizza.sizePrice.toString());
-    $('.tax').text(newPizza.tax.toString());
-    $('.totalPrice').text(totalPrice.toString());
+    $('.sizePrice').text(parseFloat(Math.round(newPizza.sizePrice*100)/100).toFixed(2));
+    $('.tax').text(parseFloat(Math.round(newPizza.tax*100)/100).toFixed(2));
+    $('.totalPrice').text(parseFloat(Math.round(totalPrice*100)/100).toFixed(2));
     $('#orderConfirm').show();
 
     event.preventDefault();
