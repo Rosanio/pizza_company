@@ -1,6 +1,9 @@
 function Pizza(size, toppings) {
   this.size = size;
   this.toppings = toppings;
+  this.sizePrice;
+  this.toppingsPrice = [];
+  this.tax;
 }
 
 Pizza.prototype.calculatePrice = function() {
@@ -10,22 +13,42 @@ Pizza.prototype.calculatePrice = function() {
   var price = 8;
   for(var i = 0; i < sizes.length; i++) {
     if(this.size === sizes[i]) {
-      price += (2*i);
+      this.sizePrice = price + (2*i);
+      price += this.sizePrice;
     }
   }
   for(var j = 0; j < this.toppings.length; j++) {
     for(var k = 0; k < meats.length; k++) {
       if(this.toppings[j] === meats[k]) {
+        this.toppingsPrice.push(2);
         price += 2;
       }
     }
     for(var x = 0; x < otherToppings.length; x++) {
       if(this.toppings[j] === otherToppings[x]) {
+        this.toppingsPrice.push(1);
         price += 1;
       }
     }
   }
-  price += (price*0.08);
-  Math.round((100*price)/100);
+  this.tax = price*0.08;
+  Math.round((100*tax)/100);
+  price += this.tax;
   return price;
 }
+
+$(function() {
+  $('form#pizza').submit(function(event) {
+    var size = $('select#size').val();
+    var toppings = [];
+    $.each($('input[name="topping"]:checked'), function() {
+      toppings.push($(this).val());
+    });
+    var newPizza = new Pizza(size, toppings);
+    var price = newPizza.calculatePrice();
+
+
+
+    event.preventDefault();
+  });
+});
