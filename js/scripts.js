@@ -6,6 +6,10 @@ function Pizza(size, toppings) {
   this.tax;
 }
 
+function Order() {
+  this.pizzas = [];
+}
+
 Pizza.prototype.calculatePrice = function() {
   var sizes = ['Small','Medium','Large','Xtra-Large'];
   var meats = ['Pepperoni','Bacon','Sausage','Chicken','Beef','Anchovies'];
@@ -115,12 +119,14 @@ function createNewPizza() {
                                 '</label>' +
                               '</div>' +
                             '</div>' +
-                          '</div>)'
+                          '</div>')
 }
 
 $(function() {
+  var quantity = 1;
   $('#addPizza').click(function() {
     createNewPizza();
+    quantity++;
   });
 
   $('form#pizza').submit(function(event) {
@@ -134,17 +140,19 @@ $(function() {
       var totalPrice = newPizza.calculatePrice();
       //create order object and push pizza into array
     })
-    var size = $('select#size').val();
-    var toppings = [];
-    $.each($('input[name="topping"]:checked'), function() {
-      toppings.push($(this).val());
-    });
-    var newPizza = new Pizza(size, toppings);
-    var totalPrice = newPizza.calculatePrice();
+    // var size = $('select#size').val();
+    // var toppings = [];
+    // $.each($('input[name="topping"]:checked'), function() {
+    //   toppings.push($(this).val());
+    // });
+    // var newPizza = new Pizza(size, toppings);
+    // var totalPrice = newPizza.calculatePrice();
 
     $('#toppingsPrice').empty();
     $('.orderToppings').empty();
     $('.orderSize').text(size);
+    console.log(toppings);
+    debugger;
     for(var i = 0; i < toppings.length; i++) {
       if(i === toppings.length-1) {
         $('.orderToppings').append(toppings[i]);

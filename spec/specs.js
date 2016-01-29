@@ -8,3 +8,10 @@ describe('Pizza', function() {
     expect(testPizza.calculatePrice()).to.equal(14.04);
   });
 })
+
+describe('Order', function() {
+  it('will create an order object which can hold multiple pizzas', function() {
+    var testOrder = new Order()
+    expect(testOrder.pizzas).to.eql([]);
+  });
+});
