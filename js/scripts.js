@@ -119,7 +119,21 @@ function createNewPizza() {
 }
 
 $(function() {
+  $('#addPizza').click(function() {
+    createNewPizza();
+  });
+
   $('form#pizza').submit(function(event) {
+    $('.new-pizza').each(function() {
+      var size = $(this).find('select#size').val();
+      var toppings = [];
+      $(this).find('input[name="topping"]:checked').each(function() {
+        toppings.push($(this).val());
+      });
+      var newPizza = new Pizza(size, toppings);
+      var totalPrice = newPizza.calculatePrice();
+      //create order object and push pizza into array
+    })
     var size = $('select#size').val();
     var toppings = [];
     $.each($('input[name="topping"]:checked'), function() {
