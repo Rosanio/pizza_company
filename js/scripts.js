@@ -39,7 +39,6 @@ Pizza.prototype.calculatePrice = function() {
   }
   this.tax = price*0.08;
   price += this.tax;
-  console.log(price);
   if(!isNaN(this.tip)) {
     price += this.tip;
   }
@@ -141,16 +140,27 @@ $(function() {
   $('.currentTotal').text(currentPriceDisplay);
 
   $('.sizeTarget').change(function() {
+    $('input[name="tip"]:checked', '#tip').each(function() {
+      $(this).prop('checked', false);
+    });
+    firstPizza.tip = 0;
+    currentTip = 0;
     var size = $('.sizeTarget option:selected').val();
     firstPizza.size = size;
     firstPizza.calculatePrice();
     currentSizePrice = firstPizza.sizePrice;
+    console.log(currentToppingPrice);
     currentPriceDisplay = parseFloat(Math.round((currentSizePrice+currentToppingPrice+currentTip)*100)/100).toFixed(2);
     $('.currentTotal').text(currentPriceDisplay);
   });
 
   $('.toppingTarget').change(function() {
-    var currentToppingPrice = 0;
+    $('input[name="tip"]:checked', '#tip').each(function() {
+      $(this).prop('checked', false);
+    });
+    firstPizza.tip = 0;
+    currentTip = 0;
+    var tempToppingPrice = 0;
     firstPizza.toppings = [];
     firstPizza.toppingsPrice = [];
     $('.meat').each(function() {
@@ -165,10 +175,12 @@ $(function() {
     });
     firstPizza.calculatePrice();
     for(var i = 0; i < firstPizza.toppingsPrice.length; i++) {
-      currentToppingPrice += firstPizza.toppingsPrice[i];
+      tempToppingPrice += firstPizza.toppingsPrice[i];
     }
+    currentToppingPrice = tempToppingPrice;
     currentPriceDisplay = parseFloat(Math.round((currentSizePrice+currentToppingPrice+currentTip)*100)/100).toFixed(2);
     $('.currentTotal').text(currentPriceDisplay);
+    console.log(currentToppingPrice);
   });
 
   $('.tip').change(function() {
@@ -183,7 +195,6 @@ $(function() {
   });
 
   $('form#pizza').submit(function(event) {
-    debugger;
     newOrder = new Order();
     newOrder.pizzas.push(firstPizza);
     $('.new-pizza').each(function() {
@@ -219,6 +230,7 @@ $(function() {
       }
       $('.sizePrice').text(parseFloat(Math.round(newOrder.pizzas[0].sizePrice*100)/100).toFixed(2));
       $('.tax').text(parseFloat(Math.round(newOrder.pizzas[0].tax*100)/100).toFixed(2));
+      $('.tipOutput').text(parseFloat(Math.round(newOrder.pizzas[0].tip*100)/100).toFixed(2));
       $('.totalPrice').text(parseFloat(Math.round(newOrder.pizzas[0].totalPrice*100)/100).toFixed(2));
       $('#orderConfirm').show();
       $('#onePizza').show();
