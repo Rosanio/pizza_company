@@ -4,6 +4,7 @@ function Pizza(size, toppings) {
   this.sizePrice;
   this.toppingsPrice = [];
   this.tax;
+  this.tip;
   this.totalPrice;
 }
 
@@ -37,8 +38,11 @@ Pizza.prototype.calculatePrice = function() {
     }
   }
   this.tax = price*0.08;
-  console.log(this.tax);
   price += this.tax;
+  console.log(price);
+  if(!isNaN(this.tip)) {
+    price += this.tip;
+  }
   this.totalPrice = price;
   return price;
 }
@@ -132,6 +136,7 @@ $(function() {
   });
   var currentSizePrice = 8;
   var currentToppingPrice = 0;
+  var currentTip = 0;
   var currentPriceDisplay = parseFloat(Math.round((currentSizePrice+currentToppingPrice)*100)/100).toFixed(2);
   $('.currentTotal').text(currentPriceDisplay);
 
@@ -140,7 +145,7 @@ $(function() {
     firstPizza.size = size;
     firstPizza.calculatePrice();
     currentSizePrice = firstPizza.sizePrice;
-    currentPriceDisplay = parseFloat(Math.round((currentSizePrice+currentToppingPrice)*100)/100).toFixed(2);
+    currentPriceDisplay = parseFloat(Math.round((currentSizePrice+currentToppingPrice+currentTip)*100)/100).toFixed(2);
     $('.currentTotal').text(currentPriceDisplay);
   });
 
@@ -162,13 +167,25 @@ $(function() {
     for(var i = 0; i < firstPizza.toppingsPrice.length; i++) {
       currentToppingPrice += firstPizza.toppingsPrice[i];
     }
-    console.log(currentToppingPrice);
-    currentPriceDisplay = parseFloat(Math.round((currentSizePrice+currentToppingPrice)*100)/100).toFixed(2);
+    currentPriceDisplay = parseFloat(Math.round((currentSizePrice+currentToppingPrice+currentTip)*100)/100).toFixed(2);
+    $('.currentTotal').text(currentPriceDisplay);
+  });
+
+  $('.tip').change(function() {
+    firstPizza.tip = 0;
+    firstPizza.calculatePrice();
+    var tipVal = parseInt($('input[name="tip"]:checked', '#tip').val());
+    firstPizza.tip = firstPizza.totalPrice * (tipVal/100);
+    firstPizza.calculatePrice();
+    currentTip = firstPizza.tip;
+    currentPriceDisplay = parseFloat(Math.round((currentSizePrice+currentToppingPrice+currentTip)*100)/100).toFixed(2);
     $('.currentTotal').text(currentPriceDisplay);
   });
 
   $('form#pizza').submit(function(event) {
+    debugger;
     newOrder = new Order();
+    newOrder.pizzas.push(firstPizza);
     $('.new-pizza').each(function() {
       var size = $(this).find('select#size').val();
       var toppings = [];
